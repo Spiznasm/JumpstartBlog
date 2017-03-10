@@ -2,6 +2,9 @@
 
 <ul>
   <% @tags.each do |tag| %>
-  <li><%= link_to tag.name, tag_path(tag) %> <%= link_to "Delete Tag", tag_path(tag), method: :delete, data:{confirm: "This will remove this tag from all associated articles"} %></li>
+  <li><%= link_to tag.name, tag_path(tag) %>
+  <% if logged_in? %>
+  <%= link_to "Delete Tag", tag_path(tag), method: :delete, data:{confirm: "This will remove this tag from all associated articles"} %></li>
+  <% end %>
   <% end %>
 </ul>

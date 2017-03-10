@@ -9,12 +9,15 @@
   <% if @article.image.exists? %>
   <%= image_tag @article.image.url(:medium) %></p>
   <% else %>
+  <% if logged_in? %>
   <%= link_to "Edit your article to add an image.", edit_article_path(@article) %>
   <% end %>
+  <% end %>
 <p><%= @article.body %></p>
-
+<% if logged_in? %>
 <%= link_to "Edit Article", edit_article_path(@article) %>
 <%= link_to "Delete This Article", article_path(@article), method: :delete, data: {confirm: "Really Delete the Article?"} %><br>
+<% end %>
 <%= render partial: 'comments/form' %>
 <h3>Comments (<%= @article.comments.size %>)</h3>
 <%= render partial: 'articles/comment', collection: @article.comments %>
