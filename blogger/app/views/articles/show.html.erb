@@ -5,7 +5,12 @@
     <%= link_to tag.name, tag_path(tag) %>
   <% end %>
 </p>
-
+<p>
+  <% if @article.image.exists? %>
+  <%= image_tag @article.image.url(:medium) %></p>
+  <% else %>
+  <%= link_to "Edit your article to add an image.", edit_article_path(@article) %>
+  <% end %>
 <p><%= @article.body %></p>
 
 <%= link_to "Edit Article", edit_article_path(@article) %>
